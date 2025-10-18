@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scented Candle - Nến Thơm Thư Giãn</title>
+    <!-- Tải Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Cấu hình Tailwind CSS: Sử dụng font Inter và màu sắc ấm cúng -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-brown': '#7F5539',
+                        'soft-cream': '#F8F5F1',
+                        'light-beige': '#EDE9E2',
+                        'accent-gold': '#B8860B',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Đảm bảo cuộn mượt và font chữ được áp dụng */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Styling cho slider Testimonial */
+        .testimonial-container {
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        .testimonial-item {
+            scroll-snap-align: center;
+            flex: 0 0 100%; /* Đảm bảo mỗi item chiếm trọn 100% chiều rộng */
+        }
+        /* CSS cho hình ảnh giả lập (nếu URL lỗi) */
+        .product img {
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+        }
+        /* Custom style cho form focus */
+        .contact-form textarea:focus, .contact-form input:focus {
+            border-color: #7F5539 !important;
+            box-shadow: 0 0 0 3px rgba(127, 85, 57, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-soft-cream font-sans text-stone-800">
+
+    <!-- Header & Navigation (Sticky & Responsive) -->
+    <header class="sticky top-0 z-50 bg-light-beige shadow-md">
+        <div class="container mx-auto flex items-center justify-between p-4 sm:px-6 lg:px-8">
+            <!-- Logo -->
+            <a href="#home" class="text-2xl font-bold text-primary-brown flex items-center">
+                🕯️ ScentHaven
+            </a>
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-6 text-lg">
+                <a href="#home" class="text-stone-600 hover:text-primary-brown transition duration-300">Trang Chủ</a>
+                <a href="#products" class="text-stone-600 hover:text-primary-brown transition duration-300">Sản Phẩm</a>
+                <a href="#about" class="text-stone-600 hover:text-primary-brown transition duration-300">Về Chúng Tôi</a>
+                <a href="#contact" class="text-stone-600 hover:text-primary-brown transition duration-300">Liên Hệ</a>
+            </nav>
+            <!-- Mobile Menu Button (Hamburger) -->
+            <button id="mobile-menu-button" class="md:hidden p-2 focus:outline-none">
+                <svg class="w-6 h-6 text-primary-brown" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-light-beige transition-all duration-300 ease-in-out">
+            <a href="#home" class="block py-3 px-6 text-stone-700 hover:bg-stone-200" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Trang Chủ</a>
+            <a href="#products" class="block py-3 px-6 text-stone-700 hover:bg-stone-200" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Sản Phẩm</a>
+            <a href="#about" class="block py-3 px-6 text-stone-700 hover:bg-stone-200" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Về Chúng Tôi</a>
+            <a href="#contact" class="block py-3 px-6 text-stone-700 hover:bg-stone-200" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Liên Hệ</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section (Banner) -->
+        <section id="home" class="relative overflow-hidden bg-cover bg-center py-24 sm:py-32" style="background-image: url('https://images.unsplash.com/photo-1542385100-a68194472f8a?q=80&w=1470&auto=format&fit=crop');">
+            <div class="absolute inset-0 bg-stone-900 opacity-40"></div>
+            <div class="relative container mx-auto text-center px-4">
+                <h1 class="text-5xl sm:text-7xl font-extrabold text-white mb-4 drop-shadow-lg">
+                    Nến Thơm Tự Nhiên 
+                </h1>
+                <p class="text-xl sm:text-2xl text-light-beige mb-8 font-light drop-shadow-md max-w-2xl mx-auto">
+                    Thắp sáng không gian, cân bằng tâm hồn. Khám phá sự tinh tế từ thiên nhiên.
+                </p>
+                <a href="#products" class="inline-block bg-primary-brown text-white text-lg font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-amber-900 transition duration-300 transform hover:scale-105">
+                    Khám Phá Bộ Sưu Tập
+                </a>
+            </div>
+        </section>
+
+        <!-- Featured Products Section -->
+        <section id="products" class="py-16 sm:py-24 container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center text-primary-brown mb-12 sm:mb-16">
+                ✨ Sản Phẩm Nổi Bật ✨
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Product 1: Lavender (Thư giãn) -->
+                <div class="product bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:shadow-xl hover:scale-[1.02]">
+                    <img src="https://placehold.co/600x600/b39dff/ffffff?text=Lavender" 
+                         onerror="this.onerror=null;this.src='https://placehold.co/600x600/b39dff/ffffff?text=Lavender';"
+                         alt="Nến Hương Lavender" class="w-full h-64 object-cover">
+                    <div class="p-6 text-center">
+                        <h3 class="text-2xl font-semibold text-primary-brown mb-2">Lavender Bliss</h3>
+                        <p class="text-stone-500 mb-4 h-12 overflow-hidden">Hương hoa oải hương dịu nhẹ giúp xua tan căng thẳng, mang lại giấc ngủ sâu và bình yên.</p>
+                        <span class="text-xl font-bold text-accent-gold block">250.000 VNĐ</span>
+                    </div>
+                </div>
+
+                <!-- Product 2: Sandalwood (Thiền định) -->
+                <div class="product bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:shadow-xl hover:scale-[1.02]">
+                    <img src="https://placehold.co/600x600/a3886d/ffffff?text=Sandalwood" 
+                         onerror="this.onerror=null;this.src='https://placehold.co/600x600/a3886d/ffffff?text=Sandalwood';"
+                         alt="Nến Hương Gỗ Đàn Hương" class="w-full h-64 object-cover">
+                    <div class="p-6 text-center">
+                        <h3 class="text-2xl font-semibold text-primary-brown mb-2">Sandalwood Zen</h3>
+                        <p class="text-stone-500 mb-4 h-12 overflow-hidden">Mùi gỗ đàn hương trầm ấm, lý tưởng cho yoga, thiền định hoặc một buổi tối yên tĩnh.</p>
+                        <span class="text-xl font-bold text-accent-gold block">280.000 VNĐ</span>
+                    </div>
+                </div>
+
+                <!-- Product 3: Citrus Burst (Sảng khoái) -->
+                <div class="product bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:shadow-xl hover:scale-[1.02]">
+                    <img src="https://placehold.co/600x600/fec89a/ffffff?text=Citrus" 
+                         onerror="this.onerror=null;this.src='https://placehold.co/600x600/fec89a/ffffff?text=Citrus';"
+                         alt="Nến Hương Cam Chanh" class="w-full h-64 object-cover">
+                    <div class="p-6 text-center">
+                        <h3 class="text-2xl font-semibold text-primary-brown mb-2">Citrus Burst</h3>
+                        <p class="text-stone-500 mb-4 h-12 overflow-hidden">Hương cam, chanh và bưởi tươi mới, giúp tăng cường năng lượng và làm sạch không khí.</p>
+                        <span class="text-xl font-bold text-accent-gold block">230.000 VNĐ</span>
+                    </div>
+                </div>
+
+                <!-- Product 4: Vanilla & Caramel (Ngọt ngào) -->
+                <div class="product bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:shadow-xl hover:scale-[1.02]">
+                    <img src="https://placehold.co/600x600/E9BC9D/ffffff?text=Vanilla" 
+                         onerror="this.onerror=null;this.src='https://placehold.co/600x600/E9BC9D/ffffff?text=Vanilla';"
+                         alt="Nến Hương Vani" class="w-full h-64 object-cover">
+                    <div class="p-6 text-center">
+                        <h3 class="text-2xl font-semibold text-primary-brown mb-2">Vanilla Comfort</h3>
+                        <p class="text-stone-500 mb-4 h-12 overflow-hidden">Mùi vani ngọt ngào kết hợp caramel, tạo cảm giác ấm cúng như đang ở trong tiệm bánh.</p>
+                        <span class="text-xl font-bold text-accent-gold block">265.000 VNĐ</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="bg-light-beige py-16 sm:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+                <h2 class="text-4xl font-bold text-center text-primary-brown mb-12 sm:mb-16">
+                    🌱 Về Chúng Tôi - Tinh Hoa Từ Thiên Nhiên
+                </h2>
+                <div class="space-y-8 text-lg leading-relaxed text-stone-700">
+                    <div class="md:flex md:space-x-8 items-center">
+                        <div class="md:w-1/2 mb-6 md:mb-0">
+                            <p class="font-semibold text-xl text-primary-brown mb-2">Sáp Đậu Nành Tinh Khiết</p>
+                            <p>Chúng tôi chỉ sử dụng sáp đậu nành (Soy Wax) 100% tự nhiên, không độc hại, thân thiện với môi trường và cháy sạch hơn sáp paraffin truyền thống. Điều này đảm bảo trải nghiệm đốt nến an toàn cho sức khỏe gia đình bạn.</p>
+                        </div>
+                        <div class="md:w-1/2">
+                            <img src="https://images.unsplash.com/photo-1547432098-90050868a25c?q=80&w=1500&auto=format&fit=crop" 
+                                 alt="Sáp đậu nành" class="rounded-lg shadow-xl w-full h-60 object-cover">
+                        </div>
+                    </div>
+
+                    <div class="md:flex md:space-x-8 items-center flex-row-reverse">
+                        <div class="md:w-1/2 mb-6 md:mb-0">
+                            <p class="font-semibold text-xl text-primary-brown mb-2">Tinh Dầu Nguyên Chất</p>
+                            <p>Mỗi mùi hương đều được pha trộn từ tinh dầu thực vật nguyên chất, không hóa chất tổng hợp hay chất tạo mùi nhân tạo. Chất lượng hương thơm của chúng tôi được kiểm định nghiêm ngặt để mang lại hiệu quả trị liệu cao nhất.</p>
+                        </div>
+                        <div class="md:w-1/2">
+                            <img src="https://images.unsplash.com/photo-1627888746200-a2468305c755?q=80&w=1500&auto=format&fit=crop" 
+                                 alt="Tinh dầu" class="rounded-lg shadow-xl w-full h-60 object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials/Customer Reviews -->
+        <section id="testimonials" class="py-16 sm:py-24 container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center text-primary-brown mb-12 sm:mb-16">
+                🌟 Khách Hàng Nói Gì Về Chúng Tôi 🌟
+            </h2>
+            <!-- Testimonial Carousel -->
+            <div class="relative max-w-3xl mx-auto">
+                <div id="testimonial-slider" class="flex overflow-x-scroll snap-x snap-mandatory scroll-smooth rounded-xl shadow-2xl bg-white border-2 border-primary-brown/20 testimonial-container h-80">
+                    
+                    <!-- Review 1 -->
+                    <div class="testimonial-item p-8 sm:p-12 flex flex-col justify-center items-center text-center">
+                        <p class="text-2xl italic text-stone-700 mb-6">"Nến Lavender Bliss thực sự là liều thuốc chữa lành. Tôi đã có những đêm mất ngủ, nhưng chỉ cần đốt nến 30 phút trước khi ngủ là mọi thứ đều ổn. Hương thơm rất tự nhiên và thư giãn!"</p>
+                        <p class="font-semibold text-lg text-primary-brown">— Minh Châu, Hà Nội</p>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="testimonial-item p-8 sm:p-12 flex flex-col justify-center items-center text-center">
+                        <p class="text-2xl italic text-stone-700 mb-6">"Tôi yêu Vanilla Comfort! Mùi ngọt nhẹ, không hề gắt. Nến cháy rất sạch và giữ mùi lâu. Sản phẩm đóng gói cũng rất đẹp, phù hợp làm quà tặng."</p>
+                        <p class="font-semibold text-lg text-primary-brown">— Anh Tuấn, Đà Nẵng</p>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="testimonial-item p-8 sm:p-12 flex flex-col justify-center items-center text-center">
+                        <p class="text-2xl italic text-stone-700 mb-6">"Sandalwood Zen giúp tôi tập trung hơn khi làm việc tại nhà. Mùi hương tinh tế và sang trọng. Chắc chắn sẽ mua thêm các mùi khác!"</p>
+                        <p class="font-semibold text-lg text-primary-brown">— Thu Hằng, TP. Hồ Chí Minh</p>
+                    </div>
+
+                </div>
+                <!-- Navigation Arrows (Optional, can be added with JS) -->
+                <!-- Thêm nút điều hướng nếu cần -->
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 sm:py-24 bg-light-beige">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+                <h2 class="text-4xl font-bold text-center text-primary-brown mb-12 sm:mb-16">
+                    💌 Liên Hệ & Đặt Hàng 💌
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- Contact Info -->
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-semibold text-primary-brown">Thông Tin Cửa Hàng</h3>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-xl text-accent-gold">📍</span>
+                            <div>
+                                <p class="font-medium">Địa Chỉ</p>
+                                <p class="text-stone-600">123 Đường Tinh Dầu, Quận Bình Yên, TP. Hạnh Phúc</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-xl text-accent-gold">📧</span>
+                            <div>
+                                <p class="font-medium">Email</p>
+                                <p class="text-stone-600">support@scenthaven.vn</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-xl text-accent-gold">📞</span>
+                            <div>
+                                <p class="font-medium">Điện Thoại</p>
+                                <p class="text-stone-600">0987-654-321</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="contact-form">
+                        <h3 class="text-2xl font-semibold text-primary-brown mb-4">Gửi Yêu Cầu Tư Vấn</h3>
+                        <form id="contact-form" class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-stone-700">Họ và Tên</label>
+                                <input type="text" id="name" name="name" required class="mt-1 block w-full rounded-lg border border-stone-300 p-3 shadow-sm transition duration-150">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-stone-700">Email</label>
+                                <input type="email" id="email" name="email" required class="mt-1 block w-full rounded-lg border border-stone-300 p-3 shadow-sm transition duration-150">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-stone-700">Tin Nhắn / Yêu Cầu Mùi Hương</label>
+                                <textarea id="message" name="message" rows="4" required class="mt-1 block w-full rounded-lg border border-stone-300 p-3 shadow-sm transition duration-150"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-primary-brown text-white font-semibold py-3 px-4 rounded-lg shadow-md hover:bg-amber-900 transition duration-300 transform hover:scale-[1.01]">
+                                Gửi Ngay
+                            </button>
+                            <p id="form-message" class="text-center mt-2 hidden text-sm text-green-600"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary-brown text-white py-10">
+        <div class="container mx-auto text-center px-4">
+            <p>&copy; 2025 ScentHaven. Bảo lưu mọi quyền. | Thiết kế với Tình yêu và Nến Thơm.</p>
+            <div class="mt-4 space-x-4">
+                <a href="#" class="hover:text-accent-gold transition duration-300">Facebook</a>
+                <a href="#" class="hover:text-accent-gold transition duration-300">Instagram</a>
+                <a href="#" class="hover:text-accent-gold transition duration-300">TikTok</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript cho chức năng linh hoạt và Carousel -->
+    <script>
+        // 1. Chức năng Menu Mobile
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // 2. Chức năng Carousel (Auto-Scroll)
+        const slider = document.getElementById('testimonial-slider');
+        if (slider) {
+            const items = slider.querySelectorAll('.testimonial-item');
+            let currentIndex = 0;
+
+            function scrollToNext() {
+                currentIndex = (currentIndex + 1) % items.length;
+                
+                // Tính toán vị trí cuộn dựa trên chiều rộng của item hiện tại
+                const scrollPosition = currentIndex * slider.clientWidth;
+                slider.scrollTo({
+                    left: scrollPosition,
+                    behavior: 'smooth'
+                });
+            }
+
+            // Tự động cuộn mỗi 4 giây
+            setInterval(scrollToNext, 4000);
+            
+            // Đảm bảo cuộn thủ công không ảnh hưởng đến vòng lặp
+            slider.addEventListener('scroll', () => {
+                // Có thể thêm logic để reset timer nếu người dùng cuộn thủ công
+            });
+        }
+
+        // 3. Xử lý Form Liên Hệ
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const messageElement = document.getElementById('form-message');
+            
+            // Giả lập việc gửi dữ liệu thành công
+            messageElement.textContent = "Cảm ơn bạn! Yêu cầu của bạn đã được gửi thành công. Chúng tôi sẽ liên hệ lại sớm nhất.";
+            messageElement.classList.remove('hidden', 'text-red-600');
+            messageElement.classList.add('text-green-600');
+            
+            // Reset form
+            this.reset();
+            
+            // Ẩn thông báo sau 5 giây
+            setTimeout(() => {
+                messageElement.classList.add('hidden');
+            }, 5000);
+        });
+
+    </script>
+</body>
+</html>
